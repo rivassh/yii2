@@ -13,8 +13,10 @@ class LoginCest
     /**
      * Load fixtures before db transaction begin
      * Called in _before()
+     *
      * @see \Codeception\Module\Yii2::_before()
      * @see \Codeception\Module\Yii2::loadFixtures()
+     *
      * @return array
      */
     public function _fixtures()
@@ -22,14 +24,11 @@ class LoginCest
         return [
             'user' => [
                 'class' => UserFixture::class,
-                'dataFile' => codecept_data_dir() . 'login_data.php'
-            ]
+                'dataFile' => codecept_data_dir().'login_data.php',
+            ],
         ];
     }
-    
-    /**
-     * @param FunctionalTester $I
-     */
+
     public function loginUser(FunctionalTester $I)
     {
         $I->amOnRoute('/site/login');
