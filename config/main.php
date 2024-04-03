@@ -1,5 +1,7 @@
 <?php
 
+use sizeg\jwt\Jwt;
+
 $params = array_merge(
     require __DIR__.'/../../common/config/params.php',
     require __DIR__.'/../../common/config/params-local.php',
@@ -32,10 +34,14 @@ return [
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'jwt' => [
-            'class' => \sizeg\jwt\Jwt::class,
-            'key' => 'SECRET-KEY',  //typically a long random string
-            'jwtValidationData' => \app\components\JwtValidationData::class,
-        ],
+                'class' => jwt::class,
+//        'key'   => 'secret',
+/*        'jwtValidationData' => [
+    'class' => \sizeg\jwt\JwtValidationData::class,
+    // configure leeway
+    'leeway' => 20,
+    ],        */
+            ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
             'name' => 'advanced-backend',
@@ -59,6 +65,8 @@ return [
             'showScriptName' => false,
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'auth'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
+                'POST login' => 'authentication/login',
             ],
         ],
 

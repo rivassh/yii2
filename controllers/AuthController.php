@@ -8,6 +8,7 @@ class AuthController extends ActiveController
 {
     public $modelClass = 'app\models\UserRefreshToken';
 
+
     public function actionCreate()
     {
         exit('1111');
